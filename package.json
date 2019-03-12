@@ -15,6 +15,7 @@
     "build": "tsc && babel src/index.ts --out-file lib/index.node.js",
     "test": "jest src --coverage",
     "test:codecov": "jest src --coverage && codecov",
+    "publish": "yarn build",
     "release": "np"
   },
   "devDependencies": {
