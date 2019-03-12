@@ -1,0 +1,50 @@
+{
+  "name": "ts-get",
+  "version": "0.0.1",
+  "description": "Alternative to lodash.get that makes it typed and cool as if optional chaining proposal is there",
+  "main": "lib/index.node.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "https://github.com/RIP21/ts-get.git",
+  "author": "Andrii Los <puha212@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "lint": "prettier --write ./**/*.ts",
+    "prebuild": "rimraf lib",
+    "build": "tsc && babel src/index.ts --out-file lib/index.node.js",
+    "test": "jest src --coverage",
+    "release": "np"
+  },
+  "devDependencies": {
+    "np": "^4.0.2",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-syntax-typescript": "^7.3.3",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/runtime": "^7.3.4",
+    "@types/jest": "^24.0.11",
+    "@types/lodash": "^4.14.123",
+    "jest": "^24.5.0",
+    "lodash": "^4.17.11",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333"
+  },
+  "babel": {
+    "comments": false,
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          }
+        }
+      ],
+      "@babel/preset-typescript"
+    ]
+  }
+}
