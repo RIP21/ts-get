@@ -1,6 +1,6 @@
 {
   "name": "ts-get",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Alternative to lodash.get that makes it typed and cool as if optional chaining proposal is there",
   "main": "lib/index.node.js",
   "module": "lib/index.js",
