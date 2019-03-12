@@ -60,7 +60,7 @@ export function get<T, R>(
         const result = accessorFn((object as unknown) as RequiredRecursively<T>)
         return result === undefined || result === null ? defaultValue : result
     } catch (e) {
-        return defaultValue === undefined ? undefined : defaultValue
+        return defaultValue
     }
 }
 

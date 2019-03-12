@@ -1,10 +1,13 @@
 # ts-get
-[![codecov](https://codecov.io/gh/RIP21/ts-get/branch/master/graph/badge.svg)](https://codecov.io/gh/RIP21/ts-get)
+[![npm version](https://badge.fury.io/js/ts-get.svg)](https://badge.fury.io/js/ts-get)
 [![Build Status](https://travis-ci.org/RIP21/ts-get.svg?branch=master)](https://travis-ci.org/RIP21/ts-get)
+[![codecov](https://codecov.io/gh/RIP21/ts-get/branch/master/graph/badge.svg)](https://codecov.io/gh/RIP21/ts-get)
 
-Alternative to `lodash.get` that makes it typed and cool as if optional chaining proposal is there.
+Alternative to `lodash.get` that makes it typed and cool as if optional chaining proposal is there. 
 
-## Usage and features
+Means you're not only safely navigate object, but you're also getting 100% autocomplete and type-safeness 🎉
+
+## Usage and examples
 
 ```typescript
 import get from 'ts-get'
@@ -16,8 +19,8 @@ import get from 'ts-get'
   }
  } | undefined | null
  
- const input = {}
- const input2 = {
+ const input: SomeType = {}
+ const input2: SomeType = {
     optionalField: "value",
  }
  
