@@ -1,4 +1,6 @@
 # ts-get
+[![codecov](https://codecov.io/gh/RIP21/ts-get/branch/master/graph/badge.svg)](https://codecov.io/gh/RIP21/ts-get)
+[![Build Status](https://travis-ci.org/RIP21/ts-get.svg?branch=master)](https://travis-ci.org/RIP21/ts-get)
 
 Alternative to `lodash.get` that makes it typed and cool as if optional chaining proposal is there.
 
