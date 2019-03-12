@@ -4,6 +4,7 @@
   "description": "Alternative to lodash.get that makes it typed and cool as if optional chaining proposal is there",
   "main": "lib/index.node.js",
   "module": "lib/index.js",
+  "jsnext:main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "https://github.com/RIP21/ts-get.git",
   "author": "Andrii Los <puha212@gmail.com>",
@@ -15,7 +16,7 @@
     "build": "tsc && babel src/index.ts --out-file lib/index.node.js",
     "test": "jest src --coverage",
     "test:codecov": "jest src --coverage && codecov",
-    "publish": "yarn build",
+    "prepublish": "yarn build",
     "release": "np"
   },
   "devDependencies": {
@@ -36,6 +37,9 @@
     "ts-jest": "^24.0.0",
     "typescript": "^3.3.3333"
   },
+  "files": [
+    "lib"
+  ],
   "babel": {
     "comments": false,
     "presets": [
