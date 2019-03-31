@@ -20,8 +20,8 @@
     "test": "jest src --coverage",
     "test:codecov": "jest src --coverage && codecov",
     "prepublish": "yarn build",
-    "release:smart": "cd src/ts-get && np && cd ../..",
-    "release:simple": "cd src/ts-get-simple && np && cd ../..",
+    "release:smart": "cd src/ts-get && np --any-branch && cd ../..",
+    "release:simple": "cd src/ts-get-simple && np --any-branch && cd ../..",
     "release": "run-s release:*"
   },
   "devDependencies": {
