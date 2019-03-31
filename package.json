@@ -13,7 +13,9 @@
   "scripts": {
     "lint": "prettier --write ./**/*.ts",
     "prebuild": "rimraf lib",
-    "build": "tsc && babel src/index.ts --out-file lib/index.node.js",
+    "build:simple": "babel src/ts-get-simple/index.ts --out-file src/ts-get-simple/lib/index.node.js",
+    "build:smart": "babel src/ts-get/index.ts --out-file src/ts-get/lib/index.node.js",
+    "build": "tsc && run-p build:smart build:simple",
     "test": "jest src --coverage",
     "test:codecov": "jest src --coverage && codecov",
     "prepublish": "yarn build",
@@ -21,11 +23,11 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
+    "@babel/core": "^7.4.0",
     "@babel/plugin-syntax-typescript": "^7.3.3",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-env": "^7.4.2",
     "@babel/preset-typescript": "^7.3.3",
-    "@babel/runtime": "^7.3.4",
+    "@babel/runtime": "^7.4.2",
     "@types/jest": "^24.0.11",
     "@types/lodash": "^4.14.123",
     "codecov": "^3.2.0",
@@ -33,9 +35,10 @@
     "lodash": "^4.17.11",
     "np": "^4.0.2",
     "prettier": "^1.16.4",
-    "rimraf": "^2.6.3",
-    "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333"
+    "rimraf": "2.6.3",
+    "ts-jest": "24.0.1",
+    "typescript": "3.4.1",
+    "npm-run-all": "^4.1.5"
   },
   "files": [
     "lib"
