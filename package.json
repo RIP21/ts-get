@@ -1,6 +1,6 @@
 {
   "name": "ts-get",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Alternative to lodash.get that makes it typed and cool as if optional chaining proposal is there",
   "main": "lib/index.node.js",
   "module": "lib/index.js",
@@ -9,17 +9,20 @@
   "repository": "https://github.com/RIP21/ts-get.git",
   "author": "Andrii Los <puha212@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "scripts": {
     "lint": "prettier --write ./**/*.ts",
-    "prebuild": "rimraf lib",
-    "build:simple": "babel src/ts-get-simple/index.ts --out-file src/ts-get-simple/lib/index.node.js",
-    "build:smart": "babel src/ts-get/index.ts --out-file src/ts-get/lib/index.node.js",
-    "build": "tsc && run-p build:smart build:simple",
+    "clean": "rimraf src/ts-get/lib && rimraf src/ts-get-simple/lib && mkdir src/ts-get/lib && mkdir src/ts-get-simple/lib",
+    "prebuild": "yarn clean",
+    "build:simple": "tsc -p src/ts-get-simple/tsconfig.json && babel src/ts-get-simple/index.ts --out-file src/ts-get-simple/lib/index.node.js --config-file ./.babelrc",
+    "build:smart": "tsc -p src/ts-get/tsconfig.json && babel src/ts-get/index.ts --out-file src/ts-get/lib/index.node.js  --config-file ./.babelrc",
+    "build": "run-p build:*",
     "test": "jest src --coverage",
     "test:codecov": "jest src --coverage && codecov",
     "prepublish": "yarn build",
-    "release": "np"
+    "release:simple": "cd src/ts-get-simple && np && cd ../..",
+    "release:smart": "cd src/ts-get && np && cd ../..",
+    "release": "run-s release:*"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -42,19 +45,5 @@
   },
   "files": [
     "lib"
-  ],
-  "babel": {
-    "comments": false,
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "10"
-          }
-        }
-      ],
-      "@babel/preset-typescript"
-    ]
-  }
+  ]
 }

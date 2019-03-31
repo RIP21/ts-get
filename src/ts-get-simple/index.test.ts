@@ -30,7 +30,7 @@ describe('get', function() {
     expect(result).toBe('Value')
   })
   it('should return undefined on non existing optional field', () => {
-    const result = get(inputOptionalsMissing, it => it!.b!.nested)
+    const result = get(inputOptionalsMissing, it => it!.b!.nested) // Here is wrong typings, it's string | null | undefined, where is should be only string | undefined
     expect(result).toBeUndefined()
   })
   it('should return defaultValue on non existing optional field', () => {
@@ -49,7 +49,7 @@ describe('get', function() {
     const result2 = get(inputAllPresent, it => it!.b!.nested, 'Default')
     const result2_ = _get(inputAllPresent, 'b.nested', 'Default')
 
-    const result3 = get(inputOptionalsMissing, it => it!.b!.nested)
+    const result3 = get(inputOptionalsMissing, it => it!.b!.nested) // Here is wrong typings, it's string | null | undefined, where is should be only string | undefined
     const result3_ = _get(inputOptionalsMissing, 'b.nested')
 
     const result4 = get(inputOptionalsSafeAccessMissing, it => it!.b!.nested, 'Default')
@@ -67,14 +67,14 @@ describe('get', function() {
         nested: null,
       },
     }
-    const defaultedNull = get<InputType, string | null | undefined>(
+    const defaultedNull = get( // Here is wrong typings, it's string | null, but it says string
       inputOptionalsMissing,
       it => it!.b!.nested,
       null,
     )
     expect(defaultedNull).toBe(null)
 
-    const undefinedFromNullValue = get(inputWithNull, it => it!.b!.nested)
+    const undefinedFromNullValue = get(inputWithNull, it => it!.b!.nested) // Here is wrong typings, it's string | null | undefined, where is should be only string | undefined
     expect(undefinedFromNullValue).toBeUndefined()
 
     const defaultedStringFromNullValue = get(

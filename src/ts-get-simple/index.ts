@@ -1,11 +1,12 @@
 export type AccessorFunction<T, R> = (object: T) => R
 
-export function get<T, R>(object: T, accessorFn: AccessorFunction<T, R>): R | undefined
+export function get<T, R>(object: T, accessorFn: AccessorFunction<T, R>): Exclude<R, null> | undefined
 export function get<T, R>(
   object: T,
   accessorFn: AccessorFunction<T, R>,
   defaultValue: R,
 ): Exclude<R, undefined | null>
+
 export function get<T, R>(
   object: T,
   accessorFn: AccessorFunction<T, R>,
