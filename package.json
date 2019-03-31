@@ -1,6 +1,6 @@
 {
   "name": "ts-get",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Alternative to lodash.get that makes it typed and cool as if optional chaining proposal is there",
   "main": "lib/index.node.js",
   "module": "lib/index.js",
@@ -9,49 +9,40 @@
   "repository": "https://github.com/RIP21/ts-get.git",
   "author": "Andrii Los <puha212@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "scripts": {
     "lint": "prettier --write ./**/*.ts",
-    "prebuild": "rimraf lib",
-    "build": "tsc && babel src/index.ts --out-file lib/index.node.js",
+    "clean": "rimraf src/ts-get/lib && rimraf src/ts-get-simple/lib && mkdir src/ts-get/lib && mkdir src/ts-get-simple/lib",
+    "prebuild": "yarn clean",
+    "build:smart": "tsc -p src/ts-get/tsconfig.json && babel src/ts-get/index.ts --out-file src/ts-get/lib/index.node.js  --config-file ./.babelrc",
+    "build:simple": "tsc -p src/ts-get-simple/tsconfig.json && babel src/ts-get-simple/index.ts --out-file src/ts-get-simple/lib/index.node.js --config-file ./.babelrc",
+    "build": "run-p build:*",
     "test": "jest src --coverage",
     "test:codecov": "jest src --coverage && codecov",
     "prepublish": "yarn build",
-    "release": "np"
+    "release:smart": "cd src/ts-get && np --any-branch && cd ../..",
+    "release:simple": "cd src/ts-get-simple && np --any-branch && cd ../..",
+    "release": "run-s release:*"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
+    "@babel/core": "^7.4.0",
     "@babel/plugin-syntax-typescript": "^7.3.3",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-env": "^7.4.2",
     "@babel/preset-typescript": "^7.3.3",
-    "@babel/runtime": "^7.3.4",
+    "@babel/runtime": "^7.4.2",
     "@types/jest": "^24.0.11",
     "@types/lodash": "^4.14.123",
     "codecov": "^3.2.0",
     "jest": "^24.5.0",
     "lodash": "^4.17.11",
-    "np": "^4.0.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.16.4",
-    "rimraf": "^2.6.3",
-    "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333"
+    "rimraf": "2.6.3",
+    "ts-jest": "24.0.1",
+    "typescript": "3.4.1"
   },
   "files": [
     "lib"
-  ],
-  "babel": {
-    "comments": false,
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "10"
-          }
-        }
-      ],
-      "@babel/preset-typescript"
-    ]
-  }
+  ]
 }

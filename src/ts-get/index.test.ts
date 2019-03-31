@@ -19,7 +19,7 @@ describe('get', function() {
   }
   const inputOptionalsSafeAccessMissing: InputType = {
     a: 'Value',
-    b: {} // accessing b.nested will return undefined and will not throw error
+    b: {}, // accessing b.nested will return undefined and will not throw error
   }
   it('should return value', () => {
     const result = get(inputAllPresent, it => it.a)
@@ -55,7 +55,6 @@ describe('get', function() {
     const result4 = get(inputOptionalsSafeAccessMissing, it => it.b.nested, 'Default')
     const result4_ = _get(inputOptionalsSafeAccessMissing, 'b.nested', 'Default')
 
-
     expect(result1).toBe(result1_)
     expect(result2).toBe(result2_)
     expect(result3).toBe(result3_)
@@ -68,13 +67,17 @@ describe('get', function() {
         nested: null,
       },
     }
-    const defaultedNull = get<InputType, string | null>(inputOptionalsMissing, it => it.b.nested, null)
+    const defaultedNull = get<InputType, string | null>(
+      inputOptionalsMissing,
+      it => it.b.nested,
+      null,
+    )
     expect(defaultedNull).toBe(null)
 
     const undefinedFromNullValue = get(inputWithNull, it => it.b.nested)
     expect(undefinedFromNullValue).toBeUndefined()
 
-    const defaultedStringFromNullValue = get(inputWithNull, it => it.b.nested, "Default")
-    expect(defaultedStringFromNullValue).toBe("Default")
+    const defaultedStringFromNullValue = get(inputWithNull, it => it.b.nested, 'Default')
+    expect(defaultedStringFromNullValue).toBe('Default')
   })
 })
