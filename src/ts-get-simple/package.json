@@ -9,5 +9,8 @@
   "repository": "https://github.com/RIP21/ts-get.git",
   "author": "Andrii Los <puha212@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "files": [
+    "lib"
+  ]
 }

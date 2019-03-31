@@ -14,14 +14,14 @@
     "lint": "prettier --write ./**/*.ts",
     "clean": "rimraf src/ts-get/lib && rimraf src/ts-get-simple/lib && mkdir src/ts-get/lib && mkdir src/ts-get-simple/lib",
     "prebuild": "yarn clean",
-    "build:simple": "tsc -p src/ts-get-simple/tsconfig.json && babel src/ts-get-simple/index.ts --out-file src/ts-get-simple/lib/index.node.js --config-file ./.babelrc",
     "build:smart": "tsc -p src/ts-get/tsconfig.json && babel src/ts-get/index.ts --out-file src/ts-get/lib/index.node.js  --config-file ./.babelrc",
+    "build:simple": "tsc -p src/ts-get-simple/tsconfig.json && babel src/ts-get-simple/index.ts --out-file src/ts-get-simple/lib/index.node.js --config-file ./.babelrc",
     "build": "run-p build:*",
     "test": "jest src --coverage",
     "test:codecov": "jest src --coverage && codecov",
     "prepublish": "yarn build",
-    "release:simple": "cd src/ts-get-simple && np && cd ../..",
     "release:smart": "cd src/ts-get && np && cd ../..",
+    "release:simple": "cd src/ts-get-simple && np && cd ../..",
     "release": "run-s release:*"
   },
   "devDependencies": {
