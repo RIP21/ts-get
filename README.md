@@ -19,26 +19,54 @@ import get from 'ts-get'
   }
  } | undefined | null
  
- const input: SomeType = {}
- const input2: SomeType = {
+ const emptyObject: SomeType = {}
+ const withOneOptionalField: SomeType = {
     optionalField: "value",
  }
  
- get(input, it => it.optionalField, "default") // -> "default"
- get(input2, it => it.optionalField, "default") // -> "value"
- get(input2, it => it.nested.dangerousAccess, "default") // -> "default"
- get(input2, it => it.unknownField, "default") // -> Type error, `unknownField` doesn't exist on type
- get(input2, it => it.optionalField, 5) // -> Type error, third argument is not assignable to type `string`
+ get(emptyObject, it => it.optionalField, "default") // -> "default"
+ get(withOneOptionalField, it => it.optionalField, "default") // -> "value"
+ get(withOneOptionalField, it => it.nested.dangerousAccess, "default") // -> "default"
+ get(withOneOptionalField, it => it.unknownField, "default") // -> Type error, `unknownField` doesn't exist on type
+ get(withOneOptionalField, it => it.optionalField, 5) // -> Type error, third argument is not assignable to type `string`
 ```
 
 ## Difference with `lodash.get` behavior
 
 - If your path gets `null` at the end, it will bail out to `defaultValue` or `undefined`. 
 If you would like to get `null` returned anyway, just pass it as a `defaultValue`
+
+## Known issues/limitations:
 - If your type field is of type `null` and only `null` or `undefined` your field will be of type `{}[]`. 
 I have no idea how to fix it 🤷‍♂️ PR Welcome 😇🙏
 ```typescript
 type A = {
   field: null | undefined// -> {}[] inside of the callback and as return type too
 }
+
+```
+- If you return not a primitive but an object, all its nested fields will be `Required` e.g. all `undefined` and `null` will be removed.
+```typescript
+import get from 'ts-get'
+type A = {
+  field?: {
+    optional?: string | null
+  }
+}
+const input: A = {}
+const res = get(input, it => it.field)
+res // <== Will be inferred as { optional: string }, without null and ? (undefined) which is wrong, but seems to be impossible to infer.
+
+```
+You can solve this issue passing down generics implicitly
+```typescript
+import get from 'ts-get'
+type A = {
+  field?: {
+    optional?: string | null
+  }
+}
+const input: A = {}
+const res = get<A, A['field']>(input, it => it.field)
+res // <== Will be inferred properly
 ```
