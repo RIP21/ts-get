@@ -32,15 +32,11 @@
  *
  */
 export type RequiredRecursively<T> = Exclude<
-  T extends string | number | boolean
-    ? T
-    : {
-        [P in keyof T]-?: T[P] extends (infer U)[]
-          ? RequiredRecursively<U>[]
-          : T[P] extends Array<infer U>
-          ? RequiredRecursively<U>[]
-          : RequiredRecursively<T[P]>
-      },
+  {
+    [P in keyof T]-?: T[P] extends (infer U)[]
+      ? RequiredRecursively<U>[]
+      : RequiredRecursively<T[P]>
+  },
   null | undefined
 >
 
