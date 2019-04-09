@@ -7,6 +7,10 @@ Alternative to `lodash.get` that makes it typed and cool as if optional chaining
 
 Means you're not only safely navigate object, but you're also getting 100% autocomplete and type-safeness 🎉
 
+Also about x54 times faster than `lodash.get` in regular access and 21x times faster in `forEach` and other loops.
+You can run it yourself: 
+[ts-get vs lodash.get benchmark](https://jsperf.com/ts-get-vs-get)
+
 ## Usage and examples
 
 ```typescript
