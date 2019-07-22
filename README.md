@@ -8,7 +8,7 @@ Alternative to `lodash.get` that makes it typed and cool as if optional chaining
 Means you're not only safely navigate object, but you're also getting 100% autocomplete and type-safeness 🎉
 
 ## Important comment from author :)
-Please, be aware of how this is working, and take a look limitations below, this is good to get only primitive values not an objects! (at least without generics/castings etc, which makes no sense and you can use lodash then). You better use [ts-optchain](https://github.com/rimeto/ts-optchain) if your target browers are supporting Proxy. If not, also use it but with transformer or babel-plugin that you can find there.
+Please, be aware of how this is working, and take a look limitations below, this is good to get only primitive values not an objects! (at least without generics/castings etc, which makes no sense and you can use lodash then). You better use [ts-optchain](https://github.com/rimeto/ts-optchain) if your target browers are supporting Proxy. If not, also use it but with transformer or babel-plugin that you can find in their docs.
 This was nice experiment, but performance limitations of `try catch` and problems with type inference if object is accessed is making this dangerous and not cool as I thought when I started using it :)
 
 
