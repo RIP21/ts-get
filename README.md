@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/RIP21/ts-get.svg?branch=master)](https://travis-ci.org/RIP21/ts-get)
 [![codecov](https://codecov.io/gh/RIP21/ts-get/branch/master/graph/badge.svg)](https://codecov.io/gh/RIP21/ts-get)
 
+## Archived. Use optional chaining instead :)
+
+
 Alternative to `lodash.get` that makes it typed and cool as if optional chaining proposal is there. 
 
 Means you're not only safely navigate object, but you're also getting 100% autocomplete and type-safeness 🎉
